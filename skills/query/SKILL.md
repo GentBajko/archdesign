@@ -5,7 +5,7 @@ description: Use when asking an architecture question the docs/design reference 
 
 # Archdesign: query
 
-Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/core.md`, then
+From this skill's base directory, read `../generate/references/core.md`, then
 execute
-`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/protocols/query.md`
+`../generate/references/protocols/query.md`
 exactly. Arguments to this invocation are the question.

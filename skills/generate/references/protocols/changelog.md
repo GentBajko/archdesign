@@ -10,4 +10,4 @@
 3. Append a dated entry to `docs/design/changelog.md` (create with
    frontmatter on first run; entries newest-first, each headed
    `## <date> (<base>..<head>)`). Factual voice; cite files.
-4. Suggest `/archdesign:generate` if the diff shows stale topics.
+4. Suggest a refresh (the `generate` skill) if the diff shows stale topics.

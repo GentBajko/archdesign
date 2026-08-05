@@ -90,7 +90,7 @@ would, with these differences:
 - A banner on each file: "Prescriptive — written from the design
   interview, not from code."
 
-**Lifecycle:** once code exists, plain `/archdesign:generate` refresh
+**Lifecycle:** once code exists, a plain refresh (the `generate` skill)
 replaces intent with observation topic by topic. Where implementation
 diverges from the interview, record the divergence as a fact ("designed
 as X (interview §Q7), implemented as Y (`file:line`)") — describing, not

@@ -27,11 +27,13 @@ generate/refresh the architecture reference."
 
 ## Arguments
 
-Each subcommand is its own picker-visible plugin command
-(`/archdesign:<name>`); the same words also work as arguments to this
-skill (reserved words are parsed before topic names). To run one, read
-`references/core.md` plus that one protocol file in
-`references/protocols/<name>.md` — nothing else.
+Each subcommand is its own skill in this plugin — on Claude Code and
+Copilot CLI they appear as `/archdesign:<name>` commands; on other
+harnesses invoke them by skill name (`verify`, `query`, `design`, …).
+The same words also work as arguments to this skill (reserved words are
+parsed before topic names). To run one, read `references/core.md` plus
+that one protocol file in `references/protocols/<name>.md` — nothing
+else.
 
 | Invocation | Behavior |
 | --- | --- |
@@ -58,7 +60,7 @@ of the factual topic index. Voice rules per subcommand are in
 On the `help` argument, run exactly one tool call and nothing else:
 
 ```
-bash "${CLAUDE_PLUGIN_ROOT}/skills/generate/scripts/help.sh"
+bash <this skill's base directory>/scripts/help.sh
 ```
 
 The script's stdout IS the help — it is the single source of truth for
@@ -105,7 +107,9 @@ Do this in the main session with cheap reads only:
   yourself, against that topic's required sections and checklist in
   `references/topics.md`.
 - **More than 150 source files:** dispatch one read-only subagent per
-  applicable topic, in parallel. Each prompt must contain:
+  applicable topic, in parallel (if your harness has no subagent
+  capability, analyze the topics sequentially inline instead). Each
+  subagent prompt must contain:
   1. The topic's required sections and checklist, copied from
      `references/topics.md`.
   2. The full module map from Phase 1, marked authoritative:

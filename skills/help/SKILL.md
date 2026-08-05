@@ -8,7 +8,7 @@ description: Use when asked what the archdesign plugin can do - prints the usage
 Run exactly one tool call and nothing else:
 
 ```
-bash "${CLAUDE_PLUGIN_ROOT}/skills/generate/scripts/help.sh"
+bash <this skill's base directory>/../generate/scripts/help.sh
 ```
 
 The script's stdout IS the help. Do not restate, summarize, or add any

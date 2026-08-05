@@ -11,4 +11,4 @@ No writes. Two parts:
    with the drifted lines' new locations when findable.
 
 End with one sentence: whether the reference can be trusted as-is, needs
-`/archdesign:generate` (refresh), or needs `/archdesign:generate rebuild`.
+a refresh (the `generate` skill), or a full `rebuild`.

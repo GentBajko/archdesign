@@ -5,7 +5,7 @@ description: Use when asking if the architecture docs (DESIGN.md/docs/design) ar
 
 # Archdesign: verify
 
-Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/core.md`, then
+From this skill's base directory, read `../generate/references/core.md`, then
 execute
-`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/protocols/verify.md`
+`../generate/references/protocols/verify.md`
 exactly. Arguments to this invocation are the subcommand's arguments.

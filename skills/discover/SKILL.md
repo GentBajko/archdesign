@@ -5,7 +5,7 @@ description: Use when defining a new product idea - adaptive purpose/business-pl
 
 # Archdesign: discover
 
-Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/core.md`, then
+From this skill's base directory, read `../generate/references/core.md`, then
 execute
-`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/protocols/discover.md`
+`../generate/references/protocols/discover.md`
 exactly.

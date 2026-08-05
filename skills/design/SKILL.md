@@ -5,9 +5,9 @@ description: Use when designing a new/greenfield project's architecture - exhaus
 
 # Archdesign: design
 
-Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/core.md`, then
+From this skill's base directory, read `../generate/references/core.md`, then
 execute
-`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/protocols/design.md`
+`../generate/references/protocols/design.md`
 exactly, including reading
-`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/interview.md` in full
+`../generate/references/interview.md` in full
 before the first question.

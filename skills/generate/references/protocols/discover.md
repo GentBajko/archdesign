@@ -66,7 +66,7 @@ anything invented is marked "assumed" in the screen annotation and
 listed on the index page for the user to review. Add a `README.md`
 mapping screens → scenarios → interview entries.
 
-**Handoff:** `/archdesign:design` run afterwards must read
+**Handoff:** the `design` skill run afterwards must read
 `mockup-interview.md` first and never re-ask what it already answers —
 its framing section (§0 of `../interview.md`) is largely pre-filled by
 this interview.

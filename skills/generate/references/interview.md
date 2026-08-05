@@ -1,7 +1,7 @@
 # The `design` Interview: Exhaustive Question Checklist
 
 Merged inventory of everything to settle when designing a greenfield
-architecture. Phase B of `/archdesign:design` walks this file top to bottom;
+architecture. Phase B of the `design` skill walks this file top to bottom;
 the interview is complete when every applicable item here AND every
 required section of every applicable topic in `topics.md` is answerable
 from recorded decisions.
