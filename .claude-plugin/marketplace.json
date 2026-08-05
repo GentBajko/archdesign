@@ -1,0 +1,20 @@
+{
+  "name": "archdesign-marketplace",
+  "owner": {
+    "name": "Gent Bajko",
+    "email": "gent.bajko@gmail.com",
+    "url": "https://github.com/GentBajko"
+  },
+  "metadata": {
+    "description": "Archdesign: architecture reference docs for AI-first codebases",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "archdesign",
+      "source": "./",
+      "description": "Architecture reference generator: DESIGN.md + docs/design/ stamped to commits, with verify/query/changelog/critique/runbooks/onboarding commands, a greenfield design interview, and product-discovery mockups.",
+      "strict": true
+    }
+  ]
+}
