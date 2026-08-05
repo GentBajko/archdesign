@@ -144,7 +144,9 @@ paths_covered:
    topics (architecture, conventions) are legitimately repo-wide because
    they derive from whole-source scans — accept that rather than
    widening the others to match.
-3. Write `DESIGN.md` **last**, so the index reflects what was actually
+3. If `docs/design/archdesign.json` does not exist, create it with all
+   keys explicit (defaults per `references/core.md`; `expertise: null`).
+4. Write `DESIGN.md` **last**, so the index reflects what was actually
    generated. Structure:
    - Project one-liner, tech stack, and paradigm summary in a few lines.
    - Module map with `file:line` entry-point pointers.
@@ -155,7 +157,7 @@ paths_covered:
      them in a separate "Companion docs" table below the topic index —
      the factual reference and the opinionated/instructional outputs
      stay visibly distinct. Interview Q&A files are never indexed.
-4. Monorepos: split a topic per subsystem
+5. Monorepos: split a topic per subsystem
    (`architecture-frontend.md`, `architecture-backend.md`) when one file
    would be unwieldy; the index shows the split.
 

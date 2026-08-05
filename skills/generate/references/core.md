@@ -2,11 +2,13 @@
 
 ## User config — `docs/design/archdesign.json`
 
-Optional; read it first if present; absent keys use these defaults:
+Read it first if present; absent keys use the defaults below. The
+plugin materializes it: whenever you write any output into `docs_dir`
+and the file does not exist, create it with every key explicit —
 
 ```json
 {
-  "expertise": 3,
+  "expertise": null,
   "docs_dir": "docs/design",
   "index_file": "DESIGN.md",
   "subagent_threshold": 150,
@@ -14,6 +16,10 @@ Optional; read it first if present; absent keys use these defaults:
   "language": "en"
 }
 ```
+
+`"expertise": null` means "not yet asked" — behave as level 3 until the
+ask-once rule below fills it. The config file is never indexed (it is a
+settings file, not a doc).
 
 `docs_in_git` (`"commit" | "ignore" | "ask"`) pre-answers the
 commit-or-gitignore question. `language` sets the generated docs'
@@ -43,11 +49,12 @@ style.md regardless:
 5. **architect** — maximally terse; lead with trade-off matrices;
    challenge weak or inconsistent answers; the user drives, you record.
 
-If the config file is missing and the task is interactive (any
+If `expertise` is null or missing and the task is interactive (any
 interview, `query`, `onboarding`, `critique`), ask ONE question — "How
 technical should I be with you?" with the five levels — then write the
-config file with the answer plus defaults, and never ask again.
-Non-interactive runs assume level 3 without asking.
+answer into the config file (creating it with all keys if needed), and
+never ask again. Non-interactive runs behave as level 3 without asking
+and leave `expertise` null.
 
 ## Hard rules
 
@@ -69,8 +76,8 @@ refresh protocol applies; date-only outside git).
 index, everything else (critique, changelog, onboarding, preferences,
 runbooks/, mockup/) as a row in a "Companion docs" table (file · what
 it is · date). The only exceptions are interview Q&A files
-(`interview.md`, `mockup-interview.md`, `preferences-interview.md`),
-which are never indexed. After writing your output, add or refresh your
+(`interview.md`, `mockup-interview.md`, `preferences-interview.md`) and
+`archdesign.json`, which are never indexed. After writing your output, add or refresh your
 row; if `DESIGN.md` does not exist yet, create a minimal one (title +
 the two tables) rather than leaving the output orphaned.
 
