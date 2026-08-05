@@ -4,7 +4,11 @@
 
 Read it first if present; absent keys use the defaults below. The
 plugin materializes it: whenever you write any output into `docs_dir`
-and the file does not exist, create it with every key explicit —
+and the file does not exist, run the idempotent initializer from the
+`generate` skill's `scripts/` directory — `init-config.sh <docs_dir>`
+via bash (macOS/Linux/Git Bash) or `init-config.ps1 <docs_dir>` via
+powershell (Windows); if neither shell is available, write this
+template yourself —
 
 ```json
 {
@@ -89,4 +93,6 @@ step cites its files — style.md's density and naming rules still bind.
 
 Maintenance: each subcommand = `references/protocols/<name>.md` + a
 wrapper skill at `skills/<name>/`; update both when the surface changes,
-plus `scripts/help.sh` (the single source of the usage text).
+plus `scripts/help.sh` AND `scripts/help.ps1` (same usage text, kept in
+sync — one per platform). Every script in this plugin ships as .sh
+(Unix/Git Bash) and .ps1 (Windows) pairs.

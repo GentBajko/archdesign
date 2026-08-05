@@ -58,10 +58,12 @@ of the factual topic index. Voice rules per subcommand are in
 
 ## help
 
-On the `help` argument, run exactly one tool call and nothing else:
+On the `help` argument, run exactly one tool call and nothing else —
+the platform-appropriate variant from this skill's `scripts/` directory:
 
 ```
-bash <this skill's base directory>/scripts/help.sh
+bash <base>/scripts/help.sh                                    # macOS/Linux/Git Bash
+powershell -ExecutionPolicy Bypass -File <base>\scripts\help.ps1   # Windows
 ```
 
 The script's stdout IS the help — it is the single source of truth for
@@ -144,8 +146,13 @@ paths_covered:
    topics (architecture, conventions) are legitimately repo-wide because
    they derive from whole-source scans — accept that rather than
    widening the others to match.
-3. If `docs/design/archdesign.json` does not exist, create it with all
-   keys explicit (defaults per `references/core.md`; `expertise: null`).
+3. Ensure the config file exists by running the platform-appropriate
+   initializer from this skill's `scripts/` directory (idempotent —
+   never overwrites): `bash scripts/init-config.sh <docs_dir>` on
+   macOS/Linux/Git Bash, or `powershell -ExecutionPolicy Bypass -File
+   scripts\init-config.ps1 <docs_dir>` on Windows. If neither shell is
+   available, write the JSON template from `references/core.md`
+   yourself.
 4. Write `DESIGN.md` **last**, so the index reflects what was actually
    generated. Structure:
    - Project one-liner, tech stack, and paradigm summary in a few lines.
