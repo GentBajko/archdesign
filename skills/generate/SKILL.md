@@ -1,6 +1,6 @@
 ---
 name: generate
-description: Use when asked to generate, update, or refresh a codebase's architecture reference docs (DESIGN.md plus docs/design/), map the architecture, or document the data models, typing conventions, and module boundaries so future Claude sessions can read docs instead of re-exploring the repo. Companion commands in this plugin - verify (staleness/drift report), query (cited Q&A from the docs), changelog (architectural change history), critique (opt-in judgment report), runbooks (how-to guides like deploy/run-locally), onboarding (contributor reading path), design (exhaustive design interview for a greenfield project), discover (adaptive product-discovery interview, then a full traceable HTML mockup). Descriptive by default; only critique judges.
+description: Use when asked to generate, update, or refresh a codebase's architecture reference docs (DESIGN.md plus docs/design/ topic files), map the architecture, or document the data models, typing conventions, and module boundaries so AI sessions read docs instead of re-exploring the repo. Descriptive only; refreshes just the topics whose covered paths changed since their commit stamps.
 ---
 
 # Archdesign: Codebase Architecture Reference Generator
@@ -29,9 +29,9 @@ generate/refresh the architecture reference."
 
 Each subcommand is its own picker-visible plugin command
 (`/archdesign:<name>`); the same words also work as arguments to this
-skill (reserved words are parsed before topic names). Subcommand
-protocols live in `references/subcommands.md` — read it before running
-any of them.
+skill (reserved words are parsed before topic names). To run one, read
+`references/core.md` plus that one protocol file in
+`references/protocols/<name>.md` — nothing else.
 
 | Invocation | Behavior |
 | --- | --- |
@@ -50,9 +50,8 @@ any of them.
 
 `critique` is the single exception to hard rule 1, and only because the
 user explicitly invoked it; its output is labeled opinion and kept out
-of the factual topic index. `runbooks`/`onboarding` may use
-instructional voice per `references/subcommands.md`; everything else
-follows `references/style.md` unchanged.
+of the factual topic index. Voice rules per subcommand are in
+`references/core.md`.
 
 ## help
 

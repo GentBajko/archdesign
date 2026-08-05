@@ -1,13 +1,12 @@
 ---
 name: runbooks
-description: Use when asked to generate how-to runbooks for this project - run locally, deploy, and workflows derived from the project's own extension patterns (add a command, add a migration, ...) - written to docs/design/runbooks/. Part of the archdesign plugin.
+description: Use when asked for how-to runbooks (run locally, deploy, project workflows) written to docs/design/runbooks/.
 ---
 
 # Archdesign: runbooks
 
-1. Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/SKILL.md` — its hard
-   rules and style references govern this run.
-2. Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/subcommands.md`
-   and execute the `## runbooks` protocol exactly.
-3. The arguments passed to this invocation are the single guide to
-   generate (optional; none = the standard set).
+Read `${CLAUDE_PLUGIN_ROOT}/skills/generate/references/core.md`, then
+execute
+`${CLAUDE_PLUGIN_ROOT}/skills/generate/references/protocols/runbooks.md`
+exactly. Arguments to this invocation are the single guide to generate
+(optional; none = the standard set).
