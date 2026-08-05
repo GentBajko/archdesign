@@ -2,7 +2,7 @@
   "name": "archdesign",
   "displayName": "Archdesign",
   "description": "Architecture reference docs: DESIGN.md + docs/design/ topic files stamped to commits, refreshed incrementally via git, plus verify/query/changelog/critique/runbooks/onboarding, a greenfield design interview, and product-discovery mockups.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": {
     "name": "Gent Bajko",
     "email": "gent.bajko@gmail.com"

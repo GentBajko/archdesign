@@ -17,6 +17,6 @@ project-level):
 
 Restart OpenCode. The plugin registers all archdesign skills (generate,
 verify, query, changelog, critique, runbooks, onboarding, design,
-discover, help).
+discover, preferences, help).
 
 Verify by asking: "Generate the architecture reference for this codebase."

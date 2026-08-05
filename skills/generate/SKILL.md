@@ -48,6 +48,7 @@ else.
 | `/archdesign:onboarding` | Guided reading path for new contributors → `docs/design/onboarding.md` |
 | `/archdesign:design` | Greenfield mode: exhaustive one-question-at-a-time design interview persisted to `docs/design/interview.md`; complete only when every topic template section is answerable; then a formalization gate, then generate the full (prescriptive) reference |
 | `/archdesign:discover` | Product-discovery mode, upstream of `design`: 3 seed questions, then adaptively generated questions (persisted to `docs/design/mockup-interview.md`) until the user stops or nothing would change the mockup; then a formalization gate, then a full traceable HTML mockup in `docs/design/mockup/` |
+| `/archdesign:preferences` | Code-preferences interview (typing, libraries-vs-reinvent, paradigm, errors, testing; persisted to `docs/design/preferences-interview.md`) → normative `docs/design/preferences.md`, consumed by `design` and `critique` |
 | `/archdesign:help` | Run `scripts/help.sh` via Bash — its stdout is the help; no analysis, no other output |
 
 `critique` is the single exception to hard rule 1, and only because the
@@ -146,10 +147,10 @@ paths_covered:
    - Index table `| Topic | File | Commit | Generated |`, plus absent
      topics with their reasons.
    - If companion docs exist (`critique.md`, `changelog.md`,
-     `onboarding.md`, `runbooks/`, `mockup/`, interview files), list
+     `onboarding.md`, `preferences.md`, `runbooks/`, `mockup/`), list
      them in a separate "Companion docs" table below the topic index —
      the factual reference and the opinionated/instructional outputs
-     stay visibly distinct.
+     stay visibly distinct. Interview Q&A files are never indexed.
 4. Monorepos: split a topic per subsystem
    (`architecture-frontend.md`, `architecture-backend.md`) when one file
    would be unwieldy; the index shows the split.

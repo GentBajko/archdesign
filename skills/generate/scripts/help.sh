@@ -18,6 +18,7 @@ Usage: /archdesign:<command>
   onboarding           Guided reading path for new contributors -> onboarding.md
   design               Greenfield: exhaustive architecture interview -> prescriptive reference
   discover             Product discovery: seed + adaptive interview -> traceable HTML mockup
+  preferences          Code-preferences interview -> normative preferences.md
   help                 Show this message
 
 Output: DESIGN.md (root index) + docs/design/*.md topic files, each stamped

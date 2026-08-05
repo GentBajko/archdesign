@@ -13,7 +13,10 @@ checkable conditions — sweep them and ask about whatever is not yet
 answerable. Never assume: any default you want to apply must be surfaced
 as a question or an explicitly-confirmed default, not silently adopted.
 Read `../interview.md` in full before asking the first question; its
-Conduct rules section governs the whole interview.
+Conduct rules section governs the whole interview. If
+`docs/design/preferences.md` or `docs/design/mockup-interview.md`
+exists, read them first and record what they answer as derived
+decisions — never re-ask.
 
 ## Phase A — setup / resume
 
