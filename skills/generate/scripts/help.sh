@@ -24,4 +24,8 @@ Usage: /archdesign:<command>
 Output: DESIGN.md (root index) + docs/design/*.md topic files, each stamped
 with the commit it was derived at. Re-runs refresh only drifted topics.
 Docs are strictly descriptive; only `critique` judges.
+
+Config: docs/design/archdesign.json — expertise 1-5 (vibe coder ...
+architect; how technical conversations are, asked once then saved),
+docs_dir, index_file, subagent_threshold, docs_in_git, language.
 EOF

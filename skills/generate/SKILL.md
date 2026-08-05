@@ -72,6 +72,10 @@ analysis.
 
 ## Phase 0 — Mode select
 
+0. Read `references/core.md` — shared rules and the user config
+   (`docs/design/archdesign.json`: expertise level, docs_dir,
+   index_file, subagent_threshold, docs_in_git, language). Config keys
+   override the defaults named below.
 1. Check for `DESIGN.md` at the project root and stamped topic files in
    `docs/design/`.
 2. If they exist and the argument is not `rebuild` → **refresh path**
@@ -104,10 +108,10 @@ Do this in the main session with cheap reads only:
 
 ## Phase 2 — Deep-dive
 
-- **150 source files or fewer:** analyze each applicable topic inline
-  yourself, against that topic's required sections and checklist in
-  `references/topics.md`.
-- **More than 150 source files:** dispatch one read-only subagent per
+- **At or below the subagent threshold (default 150 source files):**
+  analyze each applicable topic inline yourself, against that topic's
+  required sections and checklist in `references/topics.md`.
+- **Above the threshold:** dispatch one read-only subagent per
   applicable topic, in parallel (if your harness has no subagent
   capability, analyze the topics sequentially inline instead). Each
   subagent prompt must contain:
@@ -162,10 +166,11 @@ paths_covered:
 2. Spot-check three `file:line` pointers across topic files against the
    actual source.
 3. Report to the user: files written, topics skipped or absent and why.
-4. If the generated files are untracked and not covered by `.gitignore`,
-   ask the user whether to commit them or add `/DESIGN.md` and
-   `/docs/design/` to `.gitignore` — never decide unilaterally. On later
-   runs, respect whichever choice is already in place.
+4. If the generated files are untracked and not covered by `.gitignore`:
+   honor the `docs_in_git` config key when set (`commit` or `ignore`);
+   when it is `ask` or unset, ask the user whether to commit them or add
+   `/DESIGN.md` and `/docs/design/` to `.gitignore` — never decide
+   unilaterally. On later runs, respect whichever choice is in place.
 
 ## Refresh protocol
 
