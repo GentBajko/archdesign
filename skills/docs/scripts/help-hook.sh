@@ -10,6 +10,8 @@
 INPUT="$(cat)"
 if printf '%s' "$INPUT" | grep -q '"command_name":"capstone:help"'; then
   HELP="$(bash "$(dirname "$0")/help.sh" | sed 's/"/\\"/g' | awk '{printf "%s\\n", $0}')"
-  printf '{"decision": "block", "reason": "%s"}' "$HELP"
+  # Fenced so markdown-rendering surfaces (VS Code extension chat) keep the
+  # column alignment; terminals just show the fence lines.
+  printf '{"decision": "block", "reason": "```\\n%s```"}' "$HELP"
 fi
 exit 0
