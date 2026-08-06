@@ -82,14 +82,14 @@ so the folder reads in order even without the index), everything else
 (critique, changelog, onboarding, preferences, runbooks/, mockup/) as a
 row in a "Companion docs" table (file · what it is · date). All indexes
 and outputs are markdown — never generate an HTML index of anything. The only exceptions are interview Q&A files
-(`interview.md`, `mockup-interview.md`, `preferences-interview.md`) and
-`archdesign.json`, which are never indexed. After writing your output, add or refresh your
+(`interview.md`, `mockup-interview.md`, `preferences-interview.md`,
+`logic-interview.md`) and `archdesign.json`, which are never indexed. After writing your output, add or refresh your
 row; if `DESIGN.md` does not exist yet, create a minimal one (title +
 the two tables) rather than leaving the output orphaned.
 
 Voice: `verify`/`query`/`changelog` are facts only. `critique` is the
-one opinionated output. `preferences` is normative but only records the
-user's own stated decisions. `runbooks`/`onboarding` may use
+one opinionated output. `preferences` and `logic` are normative but
+only record the user's own stated decisions. `runbooks`/`onboarding` may use
 imperative/narrative voice, but every command must be verified and every
 step cites its files — style.md's density and naming rules still bind.
 

@@ -15,12 +15,13 @@ as a question or an explicitly-confirmed default, not silently adopted.
 Read `../interview.md` in full before asking the first question; its
 Conduct rules section governs the whole interview. Then check for
 upstream artifacts — each read only if it exists:
-`docs/design/preferences.md`, `docs/design/mockup-interview.md`, and
-the mockup itself (`docs/design/mockup/README.md`, plus individual
-screens when a question touches the flows they depict — the screens
-define scope, entities, and journeys that pre-fill models and data-flow
-answers). Record everything they answer as derived decisions — never
-re-ask it.
+`docs/design/preferences.md`, `docs/design/logic/` (the business-logic
+scenario files — they pre-fill models: entities, invariants,
+consistency needs; data-flow: lifecycles; and quality-attribute
+scenarios), `docs/design/mockup-interview.md`, and the mockup itself
+(`docs/design/mockup/README.md`, plus individual screens when a
+question touches the flows they depict). Record everything they answer
+as derived decisions — never re-ask it.
 
 ## Phase A — setup / resume
 

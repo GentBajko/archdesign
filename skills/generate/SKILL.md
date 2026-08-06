@@ -49,6 +49,7 @@ else.
 | `/archdesign:design` | Greenfield mode: exhaustive one-question-at-a-time design interview persisted to `docs/design/interview.md`; complete only when every topic template section is answerable; then a formalization gate, then generate the full (prescriptive) reference |
 | `/archdesign:discover` | Product-discovery mode, upstream of `design`: 3 seed questions, then adaptively generated questions (persisted to `docs/design/mockup-interview.md`) until the user stops or nothing would change the mockup; then a formalization gate, then a full traceable HTML mockup in `docs/design/mockup/` |
 | `/archdesign:preferences` | Code-preferences interview (typing, libraries-vs-reinvent, paradigm, errors, testing; persisted to `docs/design/preferences-interview.md`) → normative `docs/design/preferences.md`, consumed by `design` and `critique` |
+| `/archdesign:logic` | Between `discover` and `design`: scenario-by-scenario business-logic interview, depth first (persisted to `docs/design/logic-interview.md`) → one file per scenario in `docs/design/logic/`, consumed by `design` |
 | `/archdesign:help` | Run `scripts/help.sh` via Bash — its stdout is the help; no analysis, no other output |
 
 `critique` is the single exception to hard rule 1, and only because the

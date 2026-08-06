@@ -18,6 +18,7 @@ Usage: /archdesign:<command>
   onboarding           Guided reading path for new contributors -> onboarding.md
   design               Greenfield: exhaustive architecture interview -> prescriptive reference
   discover             Product discovery: seed + adaptive interview -> traceable HTML mockup
+  logic                Business-logic interview, scenario by scenario -> docs/design/logic/
   preferences          Code-preferences interview -> normative preferences.md
   help                 Show this message
 

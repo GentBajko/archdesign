@@ -66,7 +66,9 @@ screens → scenarios → interview entries, with anything invented marked
 Use the frontend-design skill if available for visual quality; every
 element must trace to an interview answer.
 
-**Handoff:** the `design` skill run afterwards must read
-`mockup-interview.md` first and never re-ask what it already answers —
-its framing section (§0 of `../interview.md`) is largely pre-filled by
-this interview.
+**Handoff:** the natural next step is the `logic` skill — it takes the
+scenarios this mockup depicts and lays their business rules bare, one
+by one, before any architecture. `design` (run after either) reads
+`mockup-interview.md` and never re-asks what it answers — its framing
+section (§0 of `../interview.md`) is largely pre-filled by this
+interview.
