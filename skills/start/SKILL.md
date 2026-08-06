@@ -1,0 +1,11 @@
+---
+name: start
+description: Use when the user says just "capstone" with nothing else, or asks to start or continue the capstone pipeline - runs the greenfield chain one stage at a time (mockup -> logic -> architecture -> code-prefs), detecting completed stages and resuming at the first incomplete one.
+---
+
+# Capstone: start
+
+From this skill's base directory, read `../docs/references/core.md`, then
+execute
+`../docs/references/protocols/start.md`
+exactly.

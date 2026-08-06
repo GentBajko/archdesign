@@ -51,6 +51,7 @@ else.
 | `/capstone:code-prefs` | Code-preferences interview (typing, libraries-vs-reinvent, paradigm, errors, testing; persisted to `docs/design/code-prefs-interview.md`) → normative `docs/design/code-prefs.md`, consumed by `architecture` and `review` |
 | `/capstone:logic` | Between `mockup` and `architecture`: scenario-by-scenario business-logic interview, depth first (persisted to `docs/design/logic-interview.md`) → one file per scenario in `docs/design/logic/`, consumed by `architecture` |
 | `/capstone:help` | Run `scripts/help.sh` via Bash — its stdout is the help; no analysis, no other output |
+| `/capstone:start` | Greenfield pipeline runner: `mockup` → `logic` → `architecture` → `code-prefs`, stage by stage, resuming at the first incomplete stage |
 
 `review` is the single exception to hard rule 1, and only because the
 user explicitly invoked it; its output is labeled opinion and kept out

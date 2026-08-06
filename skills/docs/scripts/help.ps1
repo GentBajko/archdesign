@@ -4,6 +4,11 @@ capstone — codebase architecture reference generator
 
 Usage: /capstone:<command>
 
+  start                Run the greenfield pipeline stage by stage:
+                       mockup -> logic -> architecture -> code-prefs
+                       (resumes at the first incomplete stage; also
+                        triggers on a bare "capstone" prompt)
+
   docs                 Generate the reference docs; refresh stale topics on re-runs
   docs rebuild         Force a from-scratch rebuild of everything
   docs <topic>         Regenerate one topic file regardless of staleness

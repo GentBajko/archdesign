@@ -66,7 +66,8 @@ screens → scenarios → interview entries, with anything invented marked
 Use the frontend-design skill if available for visual quality; every
 element must trace to an interview answer.
 
-**Handoff:** the natural next step is the `logic` skill — it takes the
+**Handoff:** (when running inside the `start` pipeline, it continues
+automatically) the natural next step is the `logic` skill — it takes the
 scenarios this mockup depicts and lays their business rules bare, one
 by one, before any architecture. `architecture` (run after either) reads
 `mockup-interview.md` and never re-asks what it answers — its framing
