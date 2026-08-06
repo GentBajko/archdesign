@@ -13,10 +13,14 @@ checkable conditions — sweep them and ask about whatever is not yet
 answerable. Never assume: any default you want to apply must be surfaced
 as a question or an explicitly-confirmed default, not silently adopted.
 Read `../interview.md` in full before asking the first question; its
-Conduct rules section governs the whole interview. If
-`docs/design/preferences.md` or `docs/design/mockup-interview.md`
-exists, read them first and record what they answer as derived
-decisions — never re-ask.
+Conduct rules section governs the whole interview. Then check for
+upstream artifacts — each read only if it exists:
+`docs/design/preferences.md`, `docs/design/mockup-interview.md`, and
+the mockup itself (`docs/design/mockup/README.md`, plus individual
+screens when a question touches the flows they depict — the screens
+define scope, entities, and journeys that pre-fill models and data-flow
+answers). Record everything they answer as derived decisions — never
+re-ask it.
 
 ## Phase A — setup / resume
 

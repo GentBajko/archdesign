@@ -13,12 +13,25 @@ Interview files are never indexed. Output:
 
 ## Phase A — setup / resume
 
-Read the interview file if it exists and resume; never re-ask. If the
-codebase already exists and the conventions topic
-(`docs/design/conventions.md`) is present, read it first: ask preference
-questions as confirmations of observed reality ("the code currently uses
-exceptions everywhere — preference or accident?") rather than from
-scratch.
+Read the interview file if it exists and resume; never re-ask. Then
+ground the interview in whatever already exists — each source read
+lazily, only when the current question domain touches it, and only if
+present:
+
+- The conventions topic (`docs/design/03-conventions.md`): ask
+  preference questions as confirmations of observed reality ("the code
+  currently uses exceptions everywhere — preference or accident?")
+  rather than from scratch.
+- The architecture reference (index + `01-architecture.md`,
+  `05-dependencies.md`) or the `design` interview's decisions: the
+  chosen stack scopes the library questions — ask about the libraries
+  the project actually faces, not generic ones.
+- The mockup (`docs/design/mockup/README.md`): its scenarios inform
+  testing and error-handling preferences (what must never break, what
+  the user journey tolerates).
+
+Never bulk-read all of these upfront; pull each in at the domain that
+needs it.
 
 ## Phase B — the interview
 
