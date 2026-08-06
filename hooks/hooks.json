@@ -2,7 +2,7 @@
   "hooks": {
     "UserPromptExpansion": [
       {
-        "matcher": "",
+        "matcher": "capstone:help",
         "hooks": [
           {
             "type": "command",
