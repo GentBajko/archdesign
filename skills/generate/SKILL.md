@@ -127,8 +127,15 @@ Do this in the main session with cheap reads only:
 
 ## Phase 3 — Compose
 
-1. Write each topic file to `docs/design/<topic>.md` using the exact
-   headings from `references/topics.md`, with this frontmatter:
+1. Write each topic file **chapterized** — a numbered prefix in reading
+   order so the folder itself reads like a table of contents:
+   `01-architecture.md`, `02-models.md`, `03-conventions.md`,
+   `04-data-flow.md`, `05-dependencies.md`, `06-testing.md`,
+   `07-operations.md`, `08-glossary.md` (skip absent topics without
+   renumbering). If unnumbered topic files exist from an earlier
+   version, rename them to the chapter names during the run and update
+   every cross-reference. Use the exact headings from
+   `references/topics.md`, with this frontmatter:
 
 ```yaml
 ---

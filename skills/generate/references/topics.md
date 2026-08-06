@@ -1,5 +1,11 @@
 # Topic Files: Applicability, Templates, Checklists
 
+Topics are written as numbered chapters in this reading order:
+`01-architecture.md`, `02-models.md`, `03-conventions.md`,
+`04-data-flow.md`, `05-dependencies.md`, `06-testing.md`,
+`07-operations.md`, `08-glossary.md`. The headings below use the
+logical topic names; the chapter number is a filename prefix only.
+
 Every topic file uses the frontmatter defined in SKILL.md Phase 3 and the
 exact headings shown here. A deep-dive (inline or subagent) must return
 content for every required section; write "None found" plus where you

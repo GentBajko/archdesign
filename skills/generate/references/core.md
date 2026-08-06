@@ -77,9 +77,11 @@ refresh protocol applies; date-only outside git).
 
 **Index maintenance:** every file this plugin writes under
 `docs/design/` must be listed in `DESIGN.md` — topics in the topic
-index, everything else (critique, changelog, onboarding, preferences,
-runbooks/, mockup/) as a row in a "Companion docs" table (file · what
-it is · date). The only exceptions are interview Q&A files
+index (chapterized filenames: `01-architecture.md` … `08-glossary.md`,
+so the folder reads in order even without the index), everything else
+(critique, changelog, onboarding, preferences, runbooks/, mockup/) as a
+row in a "Companion docs" table (file · what it is · date). All indexes
+and outputs are markdown — never generate an HTML index of anything. The only exceptions are interview Q&A files
 (`interview.md`, `mockup-interview.md`, `preferences-interview.md`) and
 `archdesign.json`, which are never indexed. After writing your output, add or refresh your
 row; if `DESIGN.md` does not exist yet, create a minimal one (title +

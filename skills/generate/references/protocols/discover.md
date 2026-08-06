@@ -57,14 +57,14 @@ formalizes or amends; do not generate until they do.
 
 ## Phase E — the mockup
 
-On formalization, write `docs/design/mockup/`: static self-contained
-HTML (no external deps), an index page linking every screen the
-scenarios imply, each screen annotated with the scenario and `§Q`
-entries it implements. Use the frontend-design skill if available for
-visual quality. Every element must trace to an interview answer;
-anything invented is marked "assumed" in the screen annotation and
-listed on the index page for the user to review. Add a `README.md`
-mapping screens → scenarios → interview entries.
+On formalization, write `docs/design/mockup/`: one static
+self-contained HTML file per screen the scenarios imply (no external
+deps), each annotated with the scenario and `§Q` entries it implements.
+The mockup's **only index is `README.md`** — a markdown table mapping
+screens → scenarios → interview entries, with anything invented marked
+"assumed" there for the user to review. Do not generate an index.html.
+Use the frontend-design skill if available for visual quality; every
+element must trace to an interview answer.
 
 **Handoff:** the `design` skill run afterwards must read
 `mockup-interview.md` first and never re-ask what it already answers —
