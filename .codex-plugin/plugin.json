@@ -1,14 +1,14 @@
 {
-  "name": "archdesign",
-  "version": "1.6.0",
-  "description": "Architecture reference docs: DESIGN.md + docs/design/ topic files stamped to commits, refreshed incrementally via git, plus verify/query/changelog/critique/runbooks/onboarding, a greenfield design interview, and product-discovery mockups.",
+  "name": "capstone",
+  "version": "2.0.0",
+  "description": "Architecture reference docs: DESIGN.md + docs/design/ topic files stamped to commits, refreshed incrementally via git, plus verify/query/changelog/critique/guides/onboarding, a greenfield design interview, and product-discovery mockups.",
   "author": {
     "name": "Gent Bajko",
     "email": "gent.bajko@gmail.com",
     "url": "https://github.com/GentBajko"
   },
-  "homepage": "https://github.com/GentBajko/archdesign",
-  "repository": "https://github.com/GentBajko/archdesign",
+  "homepage": "https://github.com/GentBajko/capstone",
+  "repository": "https://github.com/GentBajko/capstone",
   "license": "MIT",
   "keywords": [
     "architecture",
@@ -20,7 +20,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Archdesign",
+    "displayName": "Capstone",
     "shortDescription": "Living architecture reference docs for any codebase",
     "longDescription": "Generates and maintains a descriptive architecture reference: a lean DESIGN.md index plus per-topic files (architecture, models, conventions, data-flow, dependencies, testing, operations, glossary), each stamped with the git commit it was derived at and refreshed only when its covered paths change. Companion skills verify freshness, answer cited questions, keep an architectural changelog, write runbooks and onboarding tours, run an exhaustive greenfield design interview, and turn product ideas into traceable HTML mockups.",
     "developerName": "Gent Bajko",
@@ -34,6 +34,6 @@
       "Generate the architecture reference for this codebase.",
       "Are the architecture docs still up to date?"
     ],
-    "websiteURL": "https://github.com/GentBajko/archdesign"
+    "websiteURL": "https://github.com/GentBajko/capstone"
   }
 }

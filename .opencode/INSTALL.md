@@ -1,4 +1,4 @@
-# Installing Archdesign for OpenCode
+# Installing Capstone for OpenCode
 
 ## Prerequisites
 
@@ -6,16 +6,16 @@
 
 ## Installation
 
-Add archdesign to the `plugin` array in your `opencode.json` (global or
+Add capstone to the `plugin` array in your `opencode.json` (global or
 project-level):
 
 ```json
 {
-  "plugin": ["archdesign@git+https://github.com/GentBajko/archdesign.git"]
+  "plugin": ["capstone@git+https://github.com/GentBajko/capstone.git"]
 }
 ```
 
-Restart OpenCode. The plugin registers all archdesign skills (generate,
+Restart OpenCode. The plugin registers all capstone skills (generate,
 verify, query, changelog, critique, runbooks, onboarding, design,
 discover, logic, preferences, help).
 

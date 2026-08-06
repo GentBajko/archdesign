@@ -1,1 +1,1 @@
-@./skills/generate/SKILL.md
+@./skills/docs/SKILL.md
