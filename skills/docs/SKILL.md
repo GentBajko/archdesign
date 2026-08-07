@@ -13,79 +13,31 @@ docs instead of re-exploring the repository.
 **Announce at start:** "I'm using the capstone skill to
 generate/refresh the architecture reference."
 
-## Hard rules
+## Phase 0 — Mode select and routing
 
-1. **Describe, never judge.** No recommendations, no grades, no
-   comparisons to standards. If the codebase mixes paradigms, say where
-   and how — not whether that is good. Sole exception: the
-   explicitly-invoked `review` subcommand (see Arguments).
-2. **Write only `DESIGN.md` and `docs/design/*`.** Never touch source
-   code, `openspec/`, or human-authored docs.
-3. **Docs are skill-owned.** Re-runs may rewrite any generated section;
-   manual edits are not preserved.
-4. Follow `references/style.md` for every sentence you write.
-
-## Arguments
-
-Each subcommand is its own skill in this plugin — on Claude Code and
-Copilot CLI they appear as `/capstone:<name>` commands; on other
-harnesses invoke them by skill name (`check-docs`, `ask`, `architecture`, …).
-The same words also work as arguments to this skill (reserved words are
-parsed before topic names). To run one, read `references/core.md` plus
-that one protocol file in `references/protocols/<name>.md` — nothing
-else.
-
-| Invocation | Behavior |
-| --- | --- |
-| `/capstone:docs` | Generate if docs are missing; otherwise refresh stale topics |
-| `/capstone:docs rebuild` | Force a from-scratch rebuild of everything |
-| `/capstone:docs <topic>` | Regenerate that one topic file regardless of staleness (e.g. `models`) |
-| `/capstone:check-docs` | Read-only trust report: per-topic staleness + `file:line` pointer drift. No writes |
-| `/capstone:ask <question>` | Answer an architecture question from the docs with citations, refreshing only the stale topics it touches |
-| `/capstone:changelog [<ref>]` | Architectural change history since `<ref>` (default: oldest stamp) → append to `docs/design/changelog.md` |
-| `/capstone:review` | **Opt-in judgment** — prioritized improvement report → `docs/design/review.md`, labeled as opinion |
-| `/capstone:guides [<task>]` | Task runbooks → `docs/design/guides/*.md`; no arg = standard set + project-derived workflows |
-| `/capstone:onboarding` | Guided reading path for new contributors → `docs/design/onboarding.md` |
-| `/capstone:architecture` | Greenfield mode: exhaustive one-question-at-a-time design interview persisted to `docs/design/architecture-interview.md`; complete only when every topic template section is answerable; then a formalization gate, then generate the full (prescriptive) reference |
-| `/capstone:mockup` | Product-discovery mode, upstream of `architecture`: 3 seed questions, then adaptively generated questions (persisted to `docs/design/mockup-interview.md`) until the user stops or nothing would change the mockup; then a formalization gate, then a full traceable markdown mockup in `docs/design/mockup/` |
-| `/capstone:code-prefs` | Code-preferences interview (typing, libraries-vs-reinvent, paradigm, errors, testing; persisted to `docs/design/code-prefs-interview.md`) → normative `docs/design/code-prefs.md`, consumed by `architecture` and `review` |
-| `/capstone:logic` | Between `mockup` and `architecture`: scenario-by-scenario business-logic interview, depth first (persisted to `docs/design/logic-interview.md`) → one file per scenario in `docs/design/logic/`, consumed by `architecture` |
-| `/capstone:help` | Run `scripts/help.sh` via Bash — its stdout is the help; no analysis, no other output |
-| `/capstone:start` | Greenfield pipeline runner: `mockup` → `logic` → `architecture` → `code-prefs`, stage by stage, resuming at the first incomplete stage |
-
-`review` is the single exception to hard rule 1, and only because the
-user explicitly invoked it; its output is labeled opinion and kept out
-of the factual topic index. Voice rules per subcommand are in
-`references/core.md`.
-
-## help
-
-On the `help` argument, run exactly one tool call and nothing else —
-the platform-appropriate variant from this skill's `scripts/` directory:
-
-```
-bash <base>/scripts/help.sh                                    # macOS/Linux/Git Bash
-powershell -ExecutionPolicy Bypass -File <base>\scripts\help.ps1   # Windows
-```
-
-The script's stdout IS the help — it is the single source of truth for
-the usage text. Do not restate, summarize, format, or add any text
-before or after; if the harness requires a reply, output the script's
-stdout verbatim and stop. No other file reads, no subagents, no
-analysis.
-
-## Phase 0 — Mode select
-
-0. Read `references/core.md` — shared rules and the user config
-   (`docs/design/capstone.json`: expertise level, docs_dir,
-   index_file, subagent_threshold, docs_in_git, language). Config keys
-   override the defaults named below.
-1. Check for `DESIGN.md` at the project root and stamped topic files in
-   `docs/design/`.
-2. If they exist and the argument is not `rebuild` → **refresh path**
-   (see Refresh protocol below).
-3. If a single topic argument was given → run Phase 1 recon, then
-   Phases 2–4 for that topic only.
+0. Read `references/core.md` — the hard rules, voice rules, and user
+   config. The config always lives at the fixed path
+   `docs/design/capstone.json`, regardless of `docs_dir` (`docs_dir`
+   relocates generated outputs only, never the config). Its keys
+   override the defaults below; `docs_dir` and `index_file` must be
+   relative paths inside the repository.
+1. Routing. The reserved subcommand words (`check-docs`, `ask`,
+   `changelog`, `review`, `guides`, `onboarding`, `mockup`, `logic`,
+   `architecture`, `code-prefs`, `start`) each route to
+   `references/protocols/<name>.md` — read `references/core.md` plus
+   that one protocol file and execute it; behaviors live there, not
+   here. **Exception: when this skill was invoked as `docs`, topic
+   names win over subcommand names** — the user already chose docs, so
+   `docs architecture` regenerates `01-architecture.md` and never
+   starts the architecture interview. On the `help` argument, run
+   `scripts/help.sh` via bash (or `scripts\help.ps1` via powershell on
+   Windows) and output its stdout verbatim; nothing else.
+2. If a single topic argument was given → run Phase 1 recon, then
+   Phases 2–4 for that topic only, regardless of staleness — a topic
+   argument always regenerates its chapter.
+3. Otherwise, check for `<docs_dir>/<index_file>` and stamped topic
+   files. If they exist and the argument is not `rebuild` → **refresh
+   path** (see Refresh protocol below).
 4. Otherwise → full generation (Phases 1–4).
 
 ## Phase 1 — Inline recon
@@ -109,6 +61,10 @@ Do this in the main session with cheap reads only:
    reason; they appear in the index as absent.
 8. Measure size: count tracked source files (`git ls-files` filtered to
    source extensions; `find` outside git).
+9. If that count is ~0 and no entry points or manifests were found,
+   stop here. There is nothing to describe yet — generate nothing and
+   point the user at `start` (or `architecture` directly), the
+   greenfield path.
 
 ## Phase 2 — Deep-dive
 
@@ -141,7 +97,7 @@ Do this in the main session with cheap reads only:
 
 ```yaml
 ---
-generated_at_commit: <short sha of HEAD>   # omit outside git
+generated_at_commit: <12-char sha of HEAD>   # omit outside git
 generated_date: <YYYY-MM-DD>
 paths_covered:
   - "<glob>"
@@ -149,37 +105,39 @@ paths_covered:
 ```
 
 2. Choose `paths_covered` globs deliberately — they drive refresh
-   staleness. Cover every directory the topic's content was derived from,
-   but prefer the tightest globs that still do: package-level over
-   repo-level, so unrelated commits don't mark the topic stale. Some
-   topics (architecture, conventions) are legitimately repo-wide because
-   they derive from whole-source scans — accept that rather than
-   widening the others to match.
+   staleness. Cover every directory the topic's content was derived
+   from, but prefer the tightest globs that still do: package-level
+   over repo-level, so unrelated commits don't mark the topic stale.
+   Some topics (architecture, conventions) are legitimately repo-wide.
+   Anchor every glob at the repository root with the `:(top)` magic
+   pathspec (e.g. `:(top)src/api/**`) so staleness checks work from
+   any cwd.
 3. Ensure the config file exists by running the platform-appropriate
    initializer from this skill's `scripts/` directory (idempotent —
-   never overwrites): `bash scripts/init-config.sh <docs_dir>` on
+   never overwrites): `bash scripts/init-config.sh` on
    macOS/Linux/Git Bash, or `powershell -ExecutionPolicy Bypass -File
-   scripts\init-config.ps1 <docs_dir>` on Windows. If neither shell is
-   available, write the JSON template from `references/core.md`
-   yourself.
-4. Write `DESIGN.md` **last**, so the index reflects what was actually
-   generated. Structure:
+   scripts\init-config.ps1` on Windows. If neither shell is available,
+   write the JSON template from `references/core.md` yourself.
+4. Write `<index_file>` **last**, so the index reflects what was
+   actually generated. Structure:
    - Project one-liner, tech stack, and paradigm summary in a few lines.
    - Module map with `file:line` entry-point pointers.
    - Index table `| Topic | File | Commit | Generated |`, plus absent
      topics with their reasons.
    - If companion docs exist (`review.md`, `changelog.md`,
-     `onboarding.md`, `code-prefs.md`, `guides/`, `mockup/`), list
-     them in a separate "Companion docs" table below the topic index —
+     `onboarding.md`, `code-prefs.md`, `guides/`, `logic/`, `mockup/`),
+     list them in a separate "Companion docs" table below the topic
+     index —
      the factual reference and the opinionated/instructional outputs
      stay visibly distinct. Interview Q&A files are never indexed.
-5. Monorepos: split a topic per subsystem
-   (`architecture-frontend.md`, `architecture-backend.md`) when one file
-   would be unwieldy; the index shows the split.
+5. Monorepos: split a topic per subsystem while keeping the parent
+   chapter's number (`01-architecture-frontend.md`,
+   `01-architecture-backend.md`) when one file would be unwieldy; the
+   index shows the split.
 
 ## Phase 4 — Verify
 
-1. Re-read `DESIGN.md`: every topic link resolves to an existing file;
+1. Re-read the index: every topic link resolves to an existing file;
    every listed stamp matches that file's frontmatter.
 2. Spot-check three `file:line` pointers across topic files against the
    actual source.
@@ -192,15 +150,30 @@ paths_covered:
 
 ## Refresh protocol
 
-For each existing topic file:
+For each stamped file the plugin owns — topic chapters AND stamped
+guides under `guides/`:
 
 1. Read `generated_at_commit` and `paths_covered` from its frontmatter.
-2. Run `git diff --stat <commit>..HEAD -- <globs>`.
-3. **No changes** → skip; leave the file and its stamp untouched.
-4. **Changes** → re-run that topic's Phase 2 deep-dive and rewrite the
-   file.
-5. Always re-verify the `DESIGN.md` module map and index rows.
-6. Fall back to a full rebuild when the stamped commit is unreachable
+2. If the frontmatter has `mode: prescriptive` and any tracked source
+   now exists, the file is **stale by definition** — the planned globs
+   may not match where code actually landed. Re-run its deep-dive,
+   rewrite it descriptively, drop `mode: prescriptive` and the banner,
+   and record designed-vs-implemented divergences as facts ("designed
+   as X (architecture-interview.md §Q7), implemented as Y
+   (`file:line`)").
+3. Otherwise check staleness against the **working tree**, not just
+   commits: from the repo root, `git diff --stat <stamp> -- <globs>`
+   (commit vs working tree) plus `git status --porcelain -- <globs>`
+   for untracked files.
+4. **No changes** → skip; leave the file and its stamp untouched.
+   **Changes** → for a topic chapter, re-run its Phase 2 deep-dive and
+   rewrite it; for a stale guide, regenerate it per
+   `references/protocols/guides.md`'s format instead.
+5. Re-run the **Applicable** test from `references/topics.md` for every
+   topic the index lists as absent; generate any newly applicable topic
+   at its fixed chapter number and update its index row.
+6. Always re-verify the index's module map and rows.
+7. Fall back to a full rebuild when the stamped commit is unreachable
    (rebase, shallow clone), there is no git repo, or the user passed
    `rebuild`.
 

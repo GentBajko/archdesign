@@ -1,4 +1,4 @@
-# Prints capstone usage. Keep in sync with help.sh (same text).
+# Prints capstone usage. Keep in sync with help.sh (same text; lint-sync.ps1 asserts it).
 Write-Output @'
 capstone — codebase architecture reference generator
 
@@ -32,5 +32,5 @@ Docs are strictly descriptive; only `review` judges.
 
 Config: docs/design/capstone.json — expertise 1-5 (vibe coder ...
 architect; how technical conversations are, asked once then saved),
-docs_dir, index_file, subagent_threshold, docs_in_git, language.
+docs_dir, index_file, subagent_threshold, docs_in_git, language, pipeline.
 '@

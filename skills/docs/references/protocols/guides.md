@@ -1,4 +1,4 @@
-# runbooks [<task>] — how-to guides
+# guides [<task>] — how-to guides
 
 Output: `docs/design/guides/<slug>.md`, one file per guide,
 frontmatter with stamps and `paths_covered` (the guide participates in

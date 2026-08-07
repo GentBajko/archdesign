@@ -1,4 +1,4 @@
-# query <question> — cited Q&A
+# ask <question> — cited Q&A
 
 1. From the DESIGN.md index, pick the topics the question touches.
 2. Run the `check-docs` staleness test on just those topics; refresh any

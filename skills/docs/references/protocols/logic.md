@@ -17,8 +17,14 @@ Resume from the interview file if present. Build the scenario list:
 from `docs/design/mockup/README.md` and `mockup-interview.md` if they
 exist (each journey/screen flow is a candidate scenario — confirm the
 list with the user); otherwise elicit it ("walk me through everything a
-user can do, headline by headline"). Order by importance; record the
-agreed list.
+user can do, headline by headline"). Order by importance and record the
+agreed list as a checklist in the interview frontmatter, per core.md's
+Interview lifecycle:
+
+```yaml
+scenarios:
+  - {name: checkout, status: pending}   # pending | written | dropped
+```
 
 ## Phase B — one scenario at a time, depth first
 
@@ -48,16 +54,21 @@ Per scenario, cover until nothing is left to invent:
 When a scenario has nothing left to invent, present its summary, get
 the user's confirmation ("laid bare?"), then write
 `docs/design/logic/<NN>-<scenario>.md` immediately — sections exactly
-as the bullets above, every rule traceable to its `§Q` entry — and move
-to the next scenario. The user may stop at any point; written scenarios
-stand, the remaining list is recorded in the interview file.
+as the bullets above, every rule traceable to its `§Q` entry — flip
+that scenario's checklist entry to `written`, and move to the next.
+The user may stop at any point; written scenarios stand, the remaining
+list stays `pending` in the frontmatter. A scenario the user decides
+not to spec is marked `dropped`, with the reason in a `### D<n>` entry.
 
 ## Phase C — wrap
 
-When all scenarios are written (or the user stops), update the index
-per core.md (one Companion docs row for `logic/`), and note any
-cross-scenario contradictions discovered — surface them as questions,
-not verdicts.
+When every listed scenario is `written` or `dropped`, update the index
+per core.md (one Companion docs row for `logic/`), set
+`status: formalized` in the interview file (only now — per core.md's
+Interview lifecycle), and note any cross-scenario contradictions
+discovered — surface them as questions, not verdicts. If the user stops
+earlier, leave status as `interviewing`; the pipeline treats pending
+scenarios as in-progress.
 
 **Consumers:** `architecture` reads `docs/design/logic/` to pre-fill models
 (entities, invariants, consistency needs), data-flow (lifecycles), and

@@ -122,7 +122,8 @@ out:
   "index_file": "DESIGN.md",
   "subagent_threshold": 150,
   "docs_in_git": "ask",
-  "language": "en"
+  "language": "en",
+  "pipeline": null
 }
 ```
 
@@ -132,7 +133,9 @@ interactive command asks once, saves your answer, and never asks again.
 whether generated docs belong in version control, which also makes
 headless runs possible. `subagent_threshold` is the source-file count
 above which `docs` fans out parallel subagents instead of reading
-everything itself.
+everything itself. `pipeline` records the answer to the one-time
+question `start` asks on repos that already have code: pipeline or
+docs.
 
 ## Install
 
@@ -171,7 +174,7 @@ argument-hint: [command] [args...]
 
 No arguments: invoke the capstone:start skill. If the first argument
 matches a capstone skill (docs, check-docs, ask, changelog, review,
-guides, onboarding, mockup, logic, architecture, code-prefs, help),
+guides, onboarding, mockup, logic, architecture, code-prefs, start, help),
 invoke capstone:<that skill> with the remaining arguments.
 
 ARGUMENTS: $ARGUMENTS

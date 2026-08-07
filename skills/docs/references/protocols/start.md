@@ -14,17 +14,33 @@ wherever it stopped:
 ## Procedure
 
 1. Per core.md: read the config (expertise governs every stage's
-   conversation).
-2. Determine each stage's state from its interview file and output:
-   **not started** (no interview file) / **in progress** (status
-   `interviewing` or `awaiting-formalization`) / **done** (status
-   `formalized` and the output exists).
+   conversation; `pipeline` records the fork below).
+2. Determine each stage's state from its interview file and outputs,
+   per core.md's Interview lifecycle:
+   - **not started** — no interview file.
+   - **in progress** — status `interviewing` or
+     `awaiting-formalization` (for the latter, resume by re-presenting
+     the stage's formalization gate — never generate without the
+     user's approval), or `logic` with pending scenarios in its
+     checklist.
+   - **done** — status `formalized` (which per the lifecycle implies
+     the outputs are on disk).
+   - **outputs missing** — status `formalized` but outputs missing or
+     partial (a crash between output writes and reality): regenerate
+     the outputs from the recorded decisions, without re-interviewing.
 3. Show the pipeline as a short checklist (done / in progress /
    pending) so the user sees where they are.
-4. If the project already has source code and no stage has started,
-   ask once whether they want this greenfield pipeline or `docs` (the
-   reference generator) — "capstone" alone on an existing codebase
-   usually means `docs`.
+4. The docs-vs-pipeline fork, asked at most once ever:
+   - Skip it entirely when config `pipeline` is `true`/`false`, or when
+     a stamped descriptive index already exists (an index without
+     `mode: prescriptive` files proves the user chose `docs`), or when
+     any stage has started.
+   - Otherwise, if the project has source code (≥1 tracked source file,
+     the same measurement as the `docs` skill's Phase 1 step 8), ask
+     whether they want this greenfield pipeline or `docs`, and write
+     the answer to the config's `pipeline` key.
+   - On a `docs` answer: execute the `docs` skill's protocol now and
+     end the pipeline run.
 5. Run the first non-done stage by executing its protocol file
    (`mockup.md`, `logic.md`, `architecture.md`, `code-prefs.md`)
    exactly — including its own formalization gate. Do not blend

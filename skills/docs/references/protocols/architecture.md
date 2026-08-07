@@ -1,4 +1,4 @@
-# design — interview-driven architecture for a greenfield project
+# architecture — interview-driven design for a greenfield project
 
 Design-time mode: there is no code to describe, so the reference is
 built from an exhaustive interview instead. Three strict phases with a
@@ -25,15 +25,17 @@ as derived decisions — never re-ask it.
 
 ## Phase A — setup / resume
 
-The interview state lives in `docs/design/architecture-interview.md`. If it exists,
-read it and resume — never re-ask an answered question. If not, create
-it:
+The interview state lives in `docs/design/architecture-interview.md`.
+If it exists, read it and resume — never re-ask an answered question.
+If not, create it, **seeding `## Open questions` once** as a
+section-granularity checkbox ledger (about 20 lines, one box per
+`../interview.md` section, not per question):
 
 ```markdown
 ---
 project: <name>
 started: <date>
-status: interviewing   # interviewing | awaiting-formalization | formalized
+status: interviewing   # see core.md "Interview lifecycle"
 ---
 
 # Architecture Interview
@@ -42,7 +44,13 @@ status: interviewing   # interviewing | awaiting-formalization | formalized
 (numbered Q&A entries appended here)
 
 ## Open questions
-(the current queue, maintained every turn)
+- [ ] §0 Framing
+- [ ] §1 Shape decisions
+- [ ] §2 Topic checklists
+- [ ] §3 Quality attributes
+- [ ] §4 Conditional modules
+- [ ] §5–6 Wrap-up + red-flag screen
+(split a section into sub-items only when partially done)
 ```
 
 ## Phase B — the interview loop
@@ -69,13 +77,16 @@ status: interviewing   # interviewing | awaiting-formalization | formalized
   attributes with response measures (§3), the conditional modules that
   apply (§4), and the wrap-up sweep + red-flag screen (§5–6) before the
   gate.
-- **Maintain the queue.** Rewrite `## Open questions` every turn so the
-  file always shows what is still unknown. The interview ends when this
-  list is empty after a full topics × sections sweep.
+- **Maintain the ledger with appends and toggles, never whole-file
+  rewrites.** Per turn: append the new `### Q<n>` entry (end-anchored
+  edit or shell append), and flip one `- [ ]` to `- [x]` when a section
+  completes. On a harness without partial-file edits, rewrite only when
+  a box flips, not every turn. The interview ends when every box is
+  checked after a full topics × sections sweep.
 
 ## Phase C — formalization gate
 
-When the queue is empty, set `status: awaiting-formalization`, present
+When every box is checked, set `status: awaiting-formalization`, present
 the complete decision summary organized by topic — including the agreed
 walking-skeleton slice, the deferred-decisions list with their triggers,
 the risk/assumption log, and any red-flag screen hits the user accepted
@@ -85,21 +96,24 @@ formalizes.
 
 ## Phase D — generation
 
-On formalization, set `status: formalized` and write the full reference
-— DESIGN.md plus every applicable topic file — exactly as a normal run
-would, with these differences:
+On the user's approval, write the full reference — the index plus every
+applicable topic file — exactly as a normal `docs` run would, with
+these differences:
 
 - Frontmatter gains `mode: prescriptive`; stamps are date-only unless a
   git repo already exists.
-- Citations point at interview entries (`interview.md §Q12`) and at
-  planned paths from the decided layout, since no code exists.
-- `paths_covered` uses the planned layout's globs so the refresh
-  protocol engages as soon as code appears.
+- Citations point at interview entries
+  (`architecture-interview.md §Q12`) and at planned paths from the
+  decided layout, since no code exists.
+- `paths_covered` uses the planned layout's globs.
 - A banner on each file: "Prescriptive — written from the design
   interview, not from code."
 
-**Lifecycle:** once code exists, a plain refresh (the `docs` skill)
-replaces intent with observation topic by topic. Where implementation
-diverges from the interview, record the divergence as a fact ("designed
-as X (interview §Q7), implemented as Y (`file:line`)") — describing, not
-judging.
+Only after every output is on disk, set `status: formalized` (per
+core.md's Interview lifecycle — never before generation).
+
+**Lifecycle:** once code exists, the `docs` skill's refresh protocol
+treats every `mode: prescriptive` file as stale by definition: it
+rewrites them descriptively and records designed-vs-implemented
+divergences as facts ("designed as X (architecture-interview.md §Q7),
+implemented as Y (`file:line`)") — describing, not judging.

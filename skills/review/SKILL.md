@@ -8,4 +8,4 @@ description: Use when asked for an opinionated architecture review - severity-ra
 From this skill's base directory, read `../docs/references/core.md`, then
 execute
 `../docs/references/protocols/review.md`
-exactly (critique is core.md's sole judgment exception).
+exactly (review is core.md's sole judgment exception).

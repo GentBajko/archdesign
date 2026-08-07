@@ -1,4 +1,4 @@
-# critique — opt-in judgment (the one exception to "describe, never judge")
+# review — opt-in judgment (the one exception to "describe, never judge")
 
 1. Ensure the reference is current (run the refresh path first if stale) —
    judgments must rest on verified facts.

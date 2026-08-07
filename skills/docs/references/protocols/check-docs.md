@@ -1,11 +1,16 @@
-# verify — read-only trust report
+# check-docs — read-only trust report
 
 No writes. Two parts:
 
-1. **Staleness**: for each topic file, read its stamp and `paths_covered`,
-   run `git diff --stat <stamp>..HEAD -- <globs>`, and report a table:
-   topic | stamp | files changed since | verdict (current / stale /
-   stamp unreachable).
+1. **Staleness**: for each stamped file (topic chapters and stamped
+   guides), read its stamp and `paths_covered`, then from the repo root
+   run `git diff --stat <stamp> -- <globs>` (commit vs **working
+   tree**, so uncommitted work counts) plus `git status --porcelain --
+   <globs>` for untracked files. Report a table: topic | stamp | files
+   changed since | verdict (current / stale / stamp unreachable /
+   prescriptive — pending first observation, for any file whose
+   frontmatter still has `mode: prescriptive` while tracked source
+   exists).
 2. **Pointer drift**: sample ≥5 `file:line` pointers across different
    topic files, check each against the source, and report hits/misses
    with the drifted lines' new locations when findable.

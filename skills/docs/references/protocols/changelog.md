@@ -1,7 +1,12 @@
 # changelog [<ref>] — architectural change history
 
-1. Base ref: the argument if given, else the oldest `generated_at_commit`
-   across topic files.
+1. Base ref: the argument if given; else the `<head>` of the newest
+   entry in `docs/design/changelog.md` when it exists (so successive
+   runs continue the history instead of re-describing it); else the
+   oldest `generated_at_commit` across topic files. If the chosen ref
+   is unreachable (rebase, shallow clone), say so and fall back to the
+   oldest reachable stamp — never silently diff from the wrong base.
+   Record refs as 12-char SHAs.
 2. `git diff --stat <base>..HEAD`, then read enough of the changed files
    to describe changes at architecture level only: modules added/removed,
    dependency-direction changes, new/removed routes, commands, events,

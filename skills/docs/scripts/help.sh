@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Prints capstone usage. Single source of truth for the help text.
-# Keep in sync with help.ps1 (same text). No double quotes or backslashes
-# (help-hook.sh JSON-escapes this output).
+# Keep in sync with help.ps1 (same text; lint-sync.sh asserts it).
 cat <<'EOF'
 capstone — codebase architecture reference generator
 
@@ -35,5 +34,5 @@ Docs are strictly descriptive; only `review` judges.
 
 Config: docs/design/capstone.json — expertise 1-5 (vibe coder ...
 architect; how technical conversations are, asked once then saved),
-docs_dir, index_file, subagent_threshold, docs_in_git, language.
+docs_dir, index_file, subagent_threshold, docs_in_git, language, pipeline.
 EOF

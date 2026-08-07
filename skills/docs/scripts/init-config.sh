@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Creates <docs_dir>/capstone.json with all default settings if absent.
+# Creates docs/design/capstone.json with all default settings if absent.
+# The config path is fixed regardless of docs_dir (see core.md).
 # Idempotent: never overwrites an existing config.
-# Usage: init-config.sh [docs_dir]   (default: docs/design)
+# Usage: init-config.sh
 set -eu
-DOCS_DIR="${1:-docs/design}"
-FILE="$DOCS_DIR/capstone.json"
-mkdir -p "$DOCS_DIR"
+FILE="docs/design/capstone.json"
+mkdir -p "docs/design"
 if [ -f "$FILE" ]; then
   echo "exists: $FILE"
 else
@@ -16,7 +16,8 @@ else
   "index_file": "DESIGN.md",
   "subagent_threshold": 150,
   "docs_in_git": "ask",
-  "language": "en"
+  "language": "en",
+  "pipeline": null
 }
 EOF
   echo "created: $FILE"

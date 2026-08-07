@@ -1,4 +1,4 @@
-# preferences — code-preferences interview, then a normative standards doc
+# code-prefs — code-preferences interview, then a normative standards doc
 
 Elicits how the user **wants** code written in this project — independent
 of what the code currently does. The output is normative (the one other
@@ -6,9 +6,11 @@ place besides `review` allowed to say "do X, never Y" — because every
 rule is the user's own recorded decision, not the skill's opinion).
 
 Interview state: `docs/design/code-prefs-interview.md` — same resumable
-format as the other interviews (status frontmatter, `### Q<n>` entries
-appended before the next question, live `## Open questions` queue).
-Interview files are never indexed. Output:
+format as the other interviews (status frontmatter per core.md's
+Interview lifecycle, `### Q<n>` entries appended before the next
+question, and an `## Open questions` ledger seeded once with the nine
+Phase B domains as checkboxes, maintained by appends and toggles —
+never whole-file rewrites). Interview files are never indexed. Output:
 `docs/design/code-prefs.md` — indexed under Companion docs.
 
 ## Phase A — setup / resume
@@ -61,9 +63,10 @@ immediately. Walk these domains, skipping any the user rules out:
 
 ## Phase C — the gate
 
-When the queue is empty (or the user stops), present the decision
-summary by domain and ask the user to formalize. Do not write the output
-until they do.
+When the queue is empty (or the user stops), set
+`status: awaiting-formalization`, present the decision summary by
+domain, and ask the user to formalize. Do not write the output until
+they do.
 
 ## Phase D — the output
 
@@ -73,8 +76,10 @@ Write `docs/design/code-prefs.md`: frontmatter stamps (no
 code."; rules organized by the domains above, each traceable to its
 `§Q` entry; imperative voice.
 
-Then update the DESIGN.md index per core.md, and suggest — never do
-unasked — seeding the project's `AGENTS.md`/`CLAUDE.md` from it.
+Then update the DESIGN.md index per core.md, set `status: formalized`
+in the interview file (only now that the output is on disk, per
+core.md's Interview lifecycle), and suggest — never do unasked —
+seeding the project's `AGENTS.md`/`CLAUDE.md` from it.
 
 **Consumers:** the `architecture` interview pre-fills its conventions answers
 from this file and never re-asks; `review` gains a

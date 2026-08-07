@@ -1,4 +1,4 @@
-# discover — adaptive product-discovery interview, then the full mockup
+# mockup — adaptive product-discovery interview, then the full mockup
 
 Upstream of `architecture`: defines the product (purpose, business plan, usage
 scenarios) before any architecture exists. Philosophy is the opposite of
@@ -16,11 +16,13 @@ when nothing remains that would change the mockup.
 ## Phase A — setup / resume
 
 State lives in `docs/design/mockup-interview.md`, same resumable format
-as `architecture`'s interview file (frontmatter with `status: interviewing |
-awaiting-formalization | formalized`, numbered `### Q<n>` entries with
-question, answer as given, and normalized decision, plus a live
-`## Open threads` list rewritten every turn). Append each entry before
-asking the next question. Resume = read the file, never re-ask.
+as `architecture`'s interview file (status frontmatter per core.md's
+Interview lifecycle, numbered `### Q<n>` entries with question, answer
+as given, and normalized decision, plus an `## Open threads` ledger:
+seed it once with the three angle areas — purpose, business plan,
+scenarios — then maintain it with appends and checkbox toggles, never
+whole-file rewrites). Append each entry before asking the next
+question. Resume = read the file, never re-ask.
 
 ## Phase B — the seeds (the only predetermined questions)
 
@@ -73,7 +75,9 @@ it implements, and these sections:
 Every element must trace to an interview answer; anything invented is
 marked "assumed" inline. The folder's **only index is `README.md`** — a
 markdown table mapping screens → scenarios → interview entries, with
-all "assumed" items collected there for the user to review.
+all "assumed" items collected there for the user to review. Only after
+every screen file and the README are on disk, set `status: formalized`
+in the interview file (per core.md's Interview lifecycle).
 
 **Handoff:** (when running inside the `start` pipeline, it continues
 automatically) the natural next step is the `logic` skill — it takes the

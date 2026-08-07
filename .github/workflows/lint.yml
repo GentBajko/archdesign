@@ -1,0 +1,22 @@
+name: lint
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  lint-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross-file invariants
+        run: bash skills/docs/scripts/lint-sync.sh
+      - name: PowerShell scripts parse
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem skills/docs/scripts/*.ps1 | ForEach-Object {
+            $errs = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errs)
+            if ($errs) { Write-Output "PARSE ERRORS in $($_.Name):"; $errs; $failed = $true }
+          }
+          if ($failed) { exit 1 }
