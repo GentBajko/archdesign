@@ -20,7 +20,7 @@ Usage: /capstone:<command>
   changelog [<ref>]    Architectural change history since <ref> -> changelog.md
   guides [<task>]      How-to guides: run-locally, deploy, project workflows
   onboarding           Guided reading path for new contributors -> onboarding.md
-  mockup               Product discovery: seed + adaptive interview -> traceable HTML mockup
+  mockup               Product discovery: seed + adaptive interview -> traceable markdown mockup
   logic                Business-logic interview, scenario by scenario -> docs/design/logic/
   architecture         Greenfield: exhaustive architecture interview -> prescriptive reference
   code-prefs           Code-preferences interview -> normative code-prefs.md

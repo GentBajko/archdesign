@@ -57,14 +57,23 @@ formalizes or amends; do not generate until they do.
 
 ## Phase E — the mockup
 
-On formalization, write `docs/design/mockup/`: one static
-self-contained HTML file per screen the scenarios imply (no external
-deps), each annotated with the scenario and `§Q` entries it implements.
-The mockup's **only index is `README.md`** — a markdown table mapping
-screens → scenarios → interview entries, with anything invented marked
-"assumed" there for the user to review. Do not generate an index.html.
-Use the frontend-design skill if available for visual quality; every
-element must trace to an interview answer.
+On formalization, write `docs/design/mockup/` as **chapterized
+markdown — no HTML anywhere**. One file per screen the scenarios imply,
+numbered in journey order (`01-<screen>.md`, `02-<screen>.md`, …), each
+with frontmatter naming the scenario(s) it serves and the `§Q` entries
+it implements, and these sections:
+
+- `## Layout` — an ASCII wireframe in a fenced code block plus a short
+  element tree (what contains what).
+- `## Elements` — every interactive element: its exact label/copy, what
+  it does, where it leads.
+- `## States` — the variants the scenarios imply: empty, loading,
+  error, success.
+
+Every element must trace to an interview answer; anything invented is
+marked "assumed" inline. The folder's **only index is `README.md`** — a
+markdown table mapping screens → scenarios → interview entries, with
+all "assumed" items collected there for the user to review.
 
 **Handoff:** (when running inside the `start` pipeline, it continues
 automatically) the natural next step is the `logic` skill — it takes the

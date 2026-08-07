@@ -60,9 +60,11 @@ Product discovery. Three fixed questions (what is it, who's it for,
 what does success look like in numbers), then every question after that
 is generated from your answers. The driving rule: "if I had to build
 the mockup right now, what would I have to invent?" It keeps asking
-until the answer is nothing, or you tell it to stop. You get clickable
-HTML screens, each annotated with the interview answers it implements.
-Anything it had to assume is flagged for you to check.
+until the answer is nothing, or you tell it to stop. You get one
+markdown file per screen — an ASCII wireframe, every element with its
+exact copy and behavior, the empty/error/success states — each
+annotated with the interview answers it implements. Anything it had to
+assume is flagged for you to check.
 
 ### logic
 

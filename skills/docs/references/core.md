@@ -81,7 +81,7 @@ index (chapterized filenames: `01-architecture.md` … `08-glossary.md`,
 so the folder reads in order even without the index), everything else
 (review, changelog, onboarding, code-prefs, guides/, mockup/) as a
 row in a "Companion docs" table (file · what it is · date). All indexes
-and outputs are markdown — never generate an HTML index of anything. The only exceptions are interview Q&A files
+and outputs are markdown — never generate HTML, for anything. The only exceptions are interview Q&A files
 (`interview.md`, `mockup-interview.md`, `code-prefs-interview.md`,
 `logic-interview.md`) and `capstone.json`, which are never indexed. After writing your output, add or refresh your
 row; if `DESIGN.md` does not exist yet, create a minimal one (title +

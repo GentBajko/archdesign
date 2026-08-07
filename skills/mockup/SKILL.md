@@ -1,6 +1,6 @@
 ---
 name: mockup
-description: Use when defining a new product idea - adaptive purpose/business-plan/scenarios interview persisted to a file, then a traceable HTML mockup.
+description: Use when defining a new product idea - adaptive purpose/business-plan/scenarios interview persisted to a file, then a traceable markdown mockup.
 ---
 
 # Capstone: mockup
