@@ -146,6 +146,12 @@ Claude Code:
 /plugin install capstone@capstone-marketplace
 ```
 
+To get updates automatically: `/plugin` → Marketplaces →
+capstone-marketplace → Enable auto-update. Claude Code then pulls new
+versions in the background and prompts `/reload-plugins` when one
+lands. (Or set `"autoUpdate": true` on the marketplace entry in
+`~/.claude/settings.json`.)
+
 Copilot CLI uses the same marketplace format:
 
 ```bash
