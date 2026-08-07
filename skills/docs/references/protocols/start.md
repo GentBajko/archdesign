@@ -10,6 +10,10 @@ wherever it stopped:
    (+ `architecture-interview.md`)
 4. `code-prefs` → `docs/design/code-prefs.md`
    (+ `code-prefs-interview.md`)
+5. `stack` → the researched, user-picked stack in `05-dependencies.md`
+   (+ `stack-interview.md`)
+6. `build` → `docs/design/implementation.md`, then working code
+   (+ `build-interview.md`)
 
 ## Procedure
 
@@ -21,8 +25,9 @@ wherever it stopped:
    - **in progress** — status `interviewing` or
      `awaiting-formalization` (for the latter, resume by re-presenting
      the stage's formalization gate — never generate without the
-     user's approval), or `logic` with pending scenarios in its
-     checklist.
+     user's approval; exception: `build` with `plan_approved: true`
+     resumes coding per its Resume rules instead of re-gating), or
+     `logic` with pending scenarios in its checklist.
    - **done** — status `formalized` (which per the lifecycle implies
      the outputs are on disk).
    - **outputs missing** — status `formalized` but outputs missing or
@@ -42,13 +47,13 @@ wherever it stopped:
    - On a `docs` answer: execute the `docs` skill's protocol now and
      end the pipeline run.
 5. Run the first non-done stage by executing its protocol file
-   (`mockup.md`, `logic.md`, `architecture.md`, `code-prefs.md`)
-   exactly — including its own formalization gate. Do not blend
-   stages.
+   (`mockup.md`, `logic.md`, `architecture.md`, `code-prefs.md`,
+   `stack.md`, `build.md`) exactly — including its own formalization
+   gate. Do not blend stages.
 6. When a stage formalizes, announce it in one line and continue to
    the next ("mockup done — moving to logic; say stop to pause").
    Stopping is always safe: every stage persists its interview file,
    and the next `start` resumes exactly here.
-7. After `code-prefs`, close out: point at everything generated, and
-   note that once code exists, plain `docs` runs replace prescriptive
-   intent with observed fact.
+7. After `build`, close out: the project runs. Point at everything
+   generated, and note that from now on plain `docs` runs replace
+   prescriptive intent with observed fact as the code evolves.

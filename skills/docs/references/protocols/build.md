@@ -1,0 +1,71 @@
+# build — implementation research, then working code
+
+The last stage: turns the whole reference into running code, backend
+first, then frontend. This is the **one command allowed to write source
+code** (core.md hard rule 2's build exception) — and only after its
+plan gate.
+
+State: `docs/design/build-interview.md` (standard lifecycle per
+core.md; `formalized` here means the walking-skeleton slice runs).
+Plan output: `docs/design/implementation.md` (companion, indexed).
+Prerequisite: if `stack-interview.md` is not `formalized`, execute
+`protocols/stack.md` first — `05-dependencies.md` existing is not
+enough, since the architecture stage writes a draft of it too.
+
+**Resume:** if `implementation.md` exists and the interview records
+plan approval (`plan_approved: true` in its frontmatter, set at the
+gate), skip straight to Phase C and continue from the last step whose
+verification passes — never re-present an approved plan, never
+restart finished steps.
+
+## Phase A — implementation research
+
+Read everything: the index and chapters, `docs/design/logic/`,
+`docs/design/mockup/`, `docs/design/code-prefs.md`, and the stack
+chapter. Research — web search when available — how the chosen pieces
+actually connect: scaffold conventions for the chosen framework,
+integration patterns between the picks (auth ↔ framework, ORM ↔
+database, deploy target), official quickstarts for anything unfamiliar.
+Then write `docs/design/implementation.md`:
+
+- The module/file layout to create — backend tree, then frontend tree.
+- Per component: what it does, its key files, and real code sketches
+  for the load-bearing seams (the wiring, not the boilerplate).
+- How components connect — interfaces, calls, events — each traceable
+  to the architecture chapters that decided it.
+- Build order: the walking-skeleton slice first (recorded in the
+  architecture interview), then backend capabilities in logic-scenario
+  priority order, then frontend screens in mockup order.
+- Per step: how to verify it works before moving on.
+
+Every code decision follows `code-prefs.md`.
+
+## Phase B — the gate
+
+Set `status: awaiting-formalization`; present the plan summary (layout,
+build order, the first slice). The user approves before any code is
+written. On approval, record `plan_approved: true` in the interview
+frontmatter — Phase C's coding sessions resume against it.
+
+## Phase C — write the code
+
+**If the superpowers plugin is available** (its skills appear in your
+skill list): hand off — invoke `superpowers:writing-plans` with
+`implementation.md` plus the reference as the spec (capstone's docs ARE
+the spec; skip superpowers' brainstorming), then execute the resulting
+plan via whichever superpowers execution flow the user picks
+(subagent-driven or inline).
+
+**Otherwise**: execute `implementation.md` directly — smallest testable
+steps, backend first, frontend second, verifying each step as the plan
+specifies, honoring `code-prefs.md` throughout.
+
+Either way, code lands in the repository's source tree (never under
+the docs area). Set `status: formalized` only when the walking-skeleton
+slice actually runs.
+
+## After
+
+Point the user at the `docs` skill: as real code lands, refresh runs
+flip the reference from prescriptive to observed, recording
+divergences between the design and what was actually built.

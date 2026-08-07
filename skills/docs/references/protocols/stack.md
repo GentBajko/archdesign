@@ -1,0 +1,56 @@
+# stack — research and pick the concrete stack, capability by capability
+
+Sits after `code-prefs`, before `build`. Turns the reference's abstract
+needs into concrete, user-picked libraries, packages, and paid services
+— with real research, options, and trade-offs, not defaults from
+memory.
+
+Interview state: `docs/design/stack-interview.md` (standard lifecycle
+per core.md, ledger seeded with the capability list). Output:
+`05-dependencies.md` written or updated (`mode: prescriptive` while no
+code exists) with the chosen stack.
+
+## Phase A — derive the capability list
+
+Read the reference (especially `05-dependencies.md`,
+`01-architecture.md`, `04-data-flow.md`, `07-operations.md`),
+`docs/design/logic/`, and `docs/design/code-prefs.md`. List every
+capability the design needs a concrete pick for — typically: database,
+cache, auth, payments, email/notifications, file storage, background
+jobs, search, UI framework/component kit, state management, testing
+stack, hosting/deploy target, CI, monitoring — plus anything the
+architecture interview left open. Confirm the list with the user and
+seed the ledger with it. Capabilities `code-prefs.md` already pins are
+recorded as derived decisions, not re-asked.
+
+## Phase B — research and pick, one capability at a time
+
+1. **Research current options** — web search when the harness has it:
+   OSS packages, hosted services, paidware. Check maintenance activity,
+   license, and real pricing. Without web access, use model knowledge
+   and flag every fact that may be stale.
+2. **Filter** by `code-prefs.md`'s vetting bar (license policy,
+   maturity, buy-vs-build posture) and the architecture's constraints
+   (language, hosting decisions, quality targets).
+3. **Present 2–4 options, recommended first**, each with: what it is,
+   pros, cons, license, pricing (for anything paid), and a one-line fit
+   rationale tied to this project's docs. Expertise governs the form
+   (level 1: recommend and confirm in plain words; level 5: the
+   comparison table).
+4. **Record the pick** as a `§Q` decision; flip the ledger box.
+
+## Phase C — gate and output
+
+Set `status: awaiting-formalization`; present the summary table
+(capability → pick → one-line why). On formalization, write or update
+`05-dependencies.md` listing every pick with version floor, license,
+pricing notes, and `§Q` traceability; update the index; then set
+`status: formalized`. On a repo with no code the chapter carries
+`mode: prescriptive`; on a repo that already has code, write the picks
+into the existing descriptive chapter as decision facts ("picked
+(stack-interview.md §Q4), not yet installed") without flipping its
+mode. Either way the `docs` skill's refresh protocol preserves
+unimplemented picks from `stack-interview.md` — the research never
+vanishes because the code hasn't caught up.
+
+**Consumers:** `build` reads this chapter as its bill of materials.

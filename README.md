@@ -13,7 +13,9 @@ exploration phase, no guessing.
 
 For new projects it works in the other direction: four interviews that
 pull the product, the business rules, the architecture, and your coding
-taste out of your head before any code exists.
+taste out of your head before any code exists — then a research pass
+that picks your actual stack with you, and a build stage that turns all
+of it into running code.
 
 It runs in Claude Code, Copilot CLI, Gemini CLI, Antigravity, and
 OpenCode today. Codex, Cursor, and Kimi manifests ship in the repo but
@@ -95,6 +97,24 @@ conventions chapter first and asks "the code does X everywhere, is that
 a preference or an accident?" The output is a normative doc that the
 architecture interview and `review` both consume. It's also a decent
 starting point for a CLAUDE.md.
+
+### then: stack, then build
+
+After the interviews, `stack` does the shopping: for every capability
+the design needs (database, auth, payments, hosting, UI kit, ...), it
+researches what's actually out there — OSS and paid, with licenses and
+real pricing — filters by your code-prefs, and shows you two to four
+options with pros and cons. You pick; the picks land in the
+dependencies chapter with the reasoning attached.
+
+`build` closes the loop. It researches how your chosen pieces connect,
+writes an implementation plan — module layout, the load-bearing wiring
+as real code sketches, backend first, then frontend, walking-skeleton
+slice up front — and stops for your approval. Then it writes the code.
+If the superpowers plugin is installed it hands the plan to
+superpowers' execution flow; otherwise it executes step by step
+itself. It's the one capstone command allowed to touch your source
+tree, and only after you've seen the plan.
 
 ## Who it's for
 
@@ -180,7 +200,8 @@ argument-hint: [command] [args...]
 
 No arguments: invoke the capstone:start skill. If the first argument
 matches a capstone skill (docs, check-docs, ask, changelog, review,
-guides, onboarding, mockup, logic, architecture, code-prefs, start, help),
+guides, onboarding, mockup, logic, architecture, code-prefs, stack,
+build, start, help),
 invoke capstone:<that skill> with the remaining arguments.
 
 ARGUMENTS: $ARGUMENTS
@@ -190,7 +211,7 @@ ARGUMENTS: $ARGUMENTS
 
 | Command | What it does |
 | --- | --- |
-| `/capstone:start` | The pipeline: mockup, then logic, then architecture, then code-prefs, resuming at the first unfinished stage |
+| `/capstone:start` | The pipeline: mockup → logic → architecture → code-prefs → stack → build, resuming at the first unfinished stage |
 | `/capstone:docs` | Generate or refresh the reference (`rebuild` forces, a topic name targets one chapter) |
 | `/capstone:check-docs` | Staleness and citation-drift report, read-only |
 | `/capstone:ask <question>` | Answer from the docs, with citations |
@@ -202,6 +223,8 @@ ARGUMENTS: $ARGUMENTS
 | `/capstone:logic` | Interview 2, standalone |
 | `/capstone:architecture` | Interview 3, standalone |
 | `/capstone:code-prefs` | Interview 4, standalone |
+| `/capstone:stack` | Research libraries and services per capability, with pros/cons and pricing; you pick |
+| `/capstone:build` | Implementation plan (backend, then frontend), your approval, then working code — via superpowers when installed |
 | `/capstone:help` | Usage. In Claude Code a hook answers this before the model is invoked, so it costs zero tokens |
 
 ## Rough edges

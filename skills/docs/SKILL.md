@@ -23,7 +23,7 @@ generate/refresh the architecture reference."
    relative paths inside the repository.
 1. Routing. The reserved subcommand words (`check-docs`, `ask`,
    `changelog`, `review`, `guides`, `onboarding`, `mockup`, `logic`,
-   `architecture`, `code-prefs`, `start`) each route to
+   `architecture`, `code-prefs`, `stack`, `build`, `start`) each route to
    `references/protocols/<name>.md` — read `references/core.md` plus
    that one protocol file and execute it; behaviors live there, not
    here. **Exception: when this skill was invoked as `docs`, topic
@@ -160,7 +160,12 @@ guides under `guides/`:
    rewrite it descriptively, drop `mode: prescriptive` and the banner,
    and record designed-vs-implemented divergences as facts ("designed
    as X (architecture-interview.md §Q7), implemented as Y
-   (`file:line`)").
+   (`file:line`)"). When regenerating `05-dependencies.md` by ANY path
+   (refresh, rebuild, or a topic argument): if `stack-interview.md` is
+   formalized, also read it and record every user pick not yet present
+   in the manifests as a fact ("picked (stack-interview.md §Q4), not
+   yet installed") — the user's researched stack decisions must never
+   vanish just because the code hasn't caught up.
 3. Otherwise check staleness against the **working tree**, not just
    commits: from the repo root, `git diff --stat <stamp> -- <globs>`
    (commit vs working tree) plus `git status --porcelain -- <globs>`

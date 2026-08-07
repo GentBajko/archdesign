@@ -75,7 +75,10 @@ and leave `expertise` null.
 2. **Write only the configured docs area** — `<docs_dir>/*` plus the
    index `<index_file>` (defaults: `docs/design/*` and `DESIGN.md`) and
    the config file. Never touch source code, `openspec/`, or
-   human-authored docs.
+   human-authored docs. Sole exception: the `build` protocol (invoked
+   directly or as `start`'s final stage) writes source code and its
+   implementation-plan artifacts — that is its purpose — and only
+   after its plan gate.
 3. **Docs are skill-owned** — re-runs may rewrite any generated section;
    manual edits are not preserved.
 4. Follow `style.md` (same directory) for every sentence you write.
@@ -88,16 +91,17 @@ refresh protocol applies; date-only outside git).
 `docs/design/` must be listed in `DESIGN.md` — topics in the topic
 index (chapterized filenames: `01-architecture.md` … `08-glossary.md`,
 so the folder reads in order even without the index), everything else
-(review, changelog, onboarding, code-prefs, guides/, logic/, mockup/)
-as a row in a "Companion docs" table (file · what it is · date). All indexes
+(review, changelog, onboarding, code-prefs, implementation, guides/,
+logic/, mockup/) as a row in a "Companion docs" table (file · what it
+is · date). All indexes
 and outputs are markdown — never generate HTML, for anything. The only exceptions are interview Q&A files
 (`architecture-interview.md`, `mockup-interview.md`,
-`code-prefs-interview.md`, `logic-interview.md`) and `capstone.json`,
-which are never indexed. After writing your output, add or refresh your
+`code-prefs-interview.md`, `logic-interview.md`, `stack-interview.md`,
+`build-interview.md`) and `capstone.json`, which are never indexed. After writing your output, add or refresh your
 row; if `DESIGN.md` does not exist yet, create a minimal one (title +
 the two tables) rather than leaving the output orphaned.
 
-## Interview lifecycle (shared by all four interviews)
+## Interview lifecycle (shared by all interviews)
 
 An interview file's `status` moves `interviewing` →
 `awaiting-formalization` (set when the summary gate is presented) →
@@ -113,8 +117,9 @@ straight to `formalized` once every listed scenario is `written` or
 (`protocols/start.md`) keys stage completion on these rules.
 
 Voice: `check-docs`/`ask`/`changelog` are facts only. `review` is the
-one opinionated output. `code-prefs` and `logic` are normative but
-only record the user's own stated decisions. `guides`/`onboarding` may use
+one opinionated output. `code-prefs`, `logic`, and `stack` are
+normative but only record the user's own stated decisions;
+`build`'s `implementation.md` is instructional like `guides`. `guides`/`onboarding` may use
 imperative/narrative voice, but every command must be verified and every
 step cites its files — style.md's density and naming rules still bind.
 
